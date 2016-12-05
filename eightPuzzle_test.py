@@ -1,7 +1,11 @@
 from puzzle_heuristics import *
+from eightPuzzle import *
 
-problem = EightPuzzleState("START",0,[1,3,6,5,0,2,4,7,8])
 
-print("Misplaced tiles: {}".format(heur_displaced(problem)))
-print("Manhattan distance: {}".format(heur_manhattan_distance(problem)))
-print("Out of row and column: {}".format(heur_out_of_row_and_column(problem)))
+for i in range(0,20):
+	print("******************************")
+	print("PROBLEM {}".format(i+1))
+	s0 = EIGHT_PROBLEMS[i]
+	se = SearchEngine('best_first', 'full')
+	for h in [heur_displaced, heur_manhattan_distance,heur_out_of_row_and_column]:
+		final = se.search(initState = s0, goal_fn = eightPuzzle_goal_state, heur_fn = h, timebound = 1)
