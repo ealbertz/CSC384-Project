@@ -11,14 +11,17 @@ def heur_displaced(state):
   return count
 
 def heur_manhattan_distance(state):
+'''A heuristic function which returns the sum of all Manhattan distances for each tile to its goal position'''
 
-    total_dist = 0
-    for n in state.boxes:
-      min_dist = float('inf')
-      for storage in state.storage:
-        min_dist = min(min_dist, abs(box[0]-storage[0]) + abs(box[1]-storage[1]))
-      total_dist += min_dist
-    return total_dist
+  n = state.state.length - 1 #The width/height of the puzzle
+  total_dist = 0
+  for i in range (1,n):
+   total_dist += manhattan_dist(state.state.index(i),state.goal_state.index(i),n)
+  return total_dist
+
+def manhattan_dist(i,j,n)
+'''Manhattan distance of two indexes i and j in a puzzle with the width/height n'''
+  return abs(i % n - j % n) + abs(i // n - j // n)
 
 def heur_alternate(state):
 #IMPLEMENT
