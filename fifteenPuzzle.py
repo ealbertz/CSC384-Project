@@ -1,5 +1,5 @@
 
-'''Statespace 8-Puzzle
+'''Statespace 15-Puzzle
 '''
 from search import *
 
@@ -13,6 +13,8 @@ class FifteenPuzzleState(StateSpace):
 
         StateSpace.__init__(self, action,gval,parent)
         self.state=state
+
+        #The goal state is set to when the tiles are in numerical order
         self.goal_state=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]
 
     def successors(self):
@@ -84,7 +86,7 @@ class FifteenPuzzleState(StateSpace):
 
 def fifteenPuzzle_goal_state(state):
     '''Returns true if we have reached a goal state'''
-    '''Input: an eightPuzzle state'''
+    '''Input: an fifteenPuzzle state'''
     '''Output: True (if goal) or False (if not)'''
     return(FifteenPuzzleState.goal_state == state.state)
 
