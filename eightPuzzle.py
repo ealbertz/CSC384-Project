@@ -3,16 +3,17 @@
 '''
 from search import *
 
-class EightPuzzleState(Statespace):
-    Statespace.n=0
+class EightPuzzleState(StateSpace):
+    StateSpace.n=0
 
     def __init__(self, action, gval, state, parent = None):
         '''Create an puzzle stae object. The  input parameter state represents the puzzle as a list of numbers in teh range[0-8],
         where zero represents the blank tile.
         '''
 
-        Statespace.__init__(self, action,gval,parent)
+        StateSpace.__init__(self, action,gval,parent)
         self.state=state
+        self.goal_state = [1,2,3,4,5,6,7,8,0]
 
     def successors(self):
         '''
@@ -74,15 +75,10 @@ class EightPuzzleState(Statespace):
 
 
 
-    eightPuzzle.goal_state = [1,2,3,4,5,6,7,8,0]
+    #EightPuzzleState.goal_state = 
 
     def eightPuzzle_goal_state(state):
-     '''Returns true if we have reached a goal state'''
-     '''Input: an eightPuzzle state'''
-     '''Output: True (if goal) or False (if not)'''
-        return(eightPuzzle.goal_state == state.state)
-
-
-
-
-
+        '''Returns true if we have reached a goal state'''
+        '''Input: an eightPuzzle state'''
+        '''Output: True (if goal) or False (if not)'''
+        return(EightPuzzleState.goal_state == state.state)
