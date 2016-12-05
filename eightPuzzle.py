@@ -27,27 +27,27 @@ class EightPuzzleState(StateSpace):
             state = self.state[:]
             state[position_blank] = state[position_blank+3]
             state[position_blank + 3] = 0 
-            new_state = EightPuzzleState("Blank down", self.g.val+transition_cost, state, self)
+            new_state = EightPuzzleState("Blank down", self.gval+transition_cost, state, self)
             successors.append(new_state)
         if position_blank > 2: #possible to slide blank tile up
             state = self.state[:]
             state[position_blank] = state[position_blank-3]
             state[position_blank - 3] = 0 
-            new_state = EightPuzzleState("Blank up", self.g.val+transition_cost, state, self)
+            new_state = EightPuzzleState("Blank up", self.gval+transition_cost, state, self)
             successors.append(new_state)
 
         if position_blank % 3 < 2: #possible to slide blank tile right
             state = self.state[:]
             state[position_blank] = state[position_blank+1]
             state[position_blank + 1] = 0 
-            new_state = EightPuzzleState("Blank right", self.g.val+transition_cost, state, self)
+            new_state = EightPuzzleState("Blank right", self.gval+transition_cost, state, self)
             successors.append(new_state)
 
         if position_blank % 3 > 0: #possible to slide blank tile left
             state = self.state[:]
             state[position_blank] = state[position_blank-1]
             state[position_blank -1] = 0 
-            new_state = EightPuzzleState("Blank left", self.g.val+transition_cost, state, self)
+            new_state = EightPuzzleState("Blank left", self.gval+transition_cost, state, self)
             successors.append(new_state)
 
         return successors
@@ -74,11 +74,8 @@ class EightPuzzleState(StateSpace):
         print("|-----------|")
 
 
-
-    #EightPuzzleState.goal_state = 
-
-    def eightPuzzle_goal_state(state):
-        '''Returns true if we have reached a goal state'''
-        '''Input: an eightPuzzle state'''
-        '''Output: True (if goal) or False (if not)'''
-        return(EightPuzzleState.goal_state == state.state)
+def eightPuzzle_goal_state(state):
+    '''Returns true if we have reached a goal state'''
+    '''Input: an eightPuzzle state'''
+    '''Output: True (if goal) or False (if not)'''
+    return(state.goal_state == state.state)
