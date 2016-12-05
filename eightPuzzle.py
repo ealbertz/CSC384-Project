@@ -79,3 +79,9 @@ def eightPuzzle_goal_state(state):
     '''Input: an eightPuzzle state'''
     '''Output: True (if goal) or False (if not)'''
     return(state.goal_state == state.state)
+
+'''A set of problems for the 8-puzzle'''
+EIGHT_PROBLEMS = (
+    EightPuzzleState("START",0,[2,0,4,5,8,3,6,7,1]),
+    EightPuzzleState("START",0,[8,1,2,3,4,0,6,5,7])
+    )
