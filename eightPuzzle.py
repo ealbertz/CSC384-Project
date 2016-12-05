@@ -79,3 +79,5 @@ def eightPuzzle_goal_state(state):
     '''Input: an eightPuzzle state'''
     '''Output: True (if goal) or False (if not)'''
     return(state.goal_state == state.state)
+    
+    '''Testing testing'''
