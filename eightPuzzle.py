@@ -89,7 +89,7 @@ EIGHT_PROBLEMS = (
     EightPuzzleState("START",0,[2,0,6,3,4,5,7,8,1]),
     EightPuzzleState("START",0,[5,8,7,3,4,0,6,2,1]),
     EightPuzzleState("START",0,[3,7,6,5,4,1,2,0,8]),
-    EightPuzzleState("START",0,[2,3,5,8,7,0,1,6,5]),
+    EightPuzzleState("START",0,[1,5,2,4,3,0,7,8,6]),
     EightPuzzleState("START",0,[3,2,1,5,7,8,4,0,6]),
     EightPuzzleState("START",0,[7,8,1,0,6,4,5,2,3]),
     EightPuzzleState("START",0,[3,0,5,4,8,1,2,7,6]),
