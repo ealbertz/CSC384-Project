@@ -3,7 +3,7 @@ from eightPuzzle import *
 from fifteenPuzzle import *
 from math import * #for sqrt function
 
-def heur_displaced(state):      
+def heur_misplaced(state):      
   
   count = 0
   for i in range (1,len(state.state)):
