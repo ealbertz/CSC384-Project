@@ -45,7 +45,7 @@ def heur_linear_conflict(state):
 
   for tj in range (1,n):
     for tk in range (tj+1,n):
-      if (linear_conflict(state.state.index(tj), state.state.index(tk), state.goal_state.index(tj), state.goal_state.index(tk), sqrt(n))):
+      if (linear_conflict(state.state.index(tj), state.state.index(tk), state.goal_state.index(tj), state.goal_state.index(tk), sqrt(n)) or linear_conflict(state.state.index(tk), state.state.index(tj), state.goal_state.index(tk), state.goal_state.index(tj), sqrt(n))):
         count += 2
 
   return count
@@ -66,27 +66,3 @@ def linear_conflict(tj, tk, tj_goal, tk_goal, n):
     return tj % n == tj_goal % n and tj_goal % n == tk_goal % n and tj > tk and tj_goal < tk_goal
   else:
     return False
-
-def fval_function(sN, weight):
-#IMPLEMENT
-    """
-    Provide a custom formula for f-value computation for Anytime Weighted A star.
-    Returns the fval of the state contained in the sNode.
-
-    @param sNode sN: A search node (containing a SokobanState)
-    @param float weight: Weight given by Anytime Weighted A star
-    @rtype: float
-    """
-  
-    #Many searches will explore nodes (or states) that are ordered by their f-value.
-    #For UCS, the fvalue is the same as the gval of the state. For best-first search, the fvalue is the hval of the state.
-    #You can use this function to create an alternate f-value for states; this must be a function of the state and the weight.
-    #The function must return a numeric f-value.
-    #The value will determine your state's position on the Frontier list during a 'custom' search.
-    #You must initialize your search engine object as a 'custom' search engine if you supply a custom fval function.
-    return (1 - weight) * sN.gval + weight * sN.hval
-
-'''problem = EightPuzzleState("START",0,[1,3,2,4,8,6,7,5,0])
-problem.print_state()
-
-print("Linear conflicts: {}".format(heur_linear_conflict(problem)))'''
