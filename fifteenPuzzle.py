@@ -63,18 +63,13 @@ class FifteenPuzzleState(StateSpace):
     def print_state(self):
         if self.parent:
             print("Action= \"{}\", S{}, g-value = {}, (From State{})".format(self.action, self.index, self.gval, self.parent.index))
-            print_state_picture(self)
         else:
             print("Action= \"{}\", S{}, g-value = {}, (Initial State)".format(self.action, self.index, self.gval))
-            print_state_picture(self)
-
-
-    def print_state_picture(self):
 
         print("|-------------------|")
-        print("| {} | {} | {} | {} |".format(self.state[0],self.state[1],self.state[2]),self.state[3])
+        print("| {} | {} | {} | {} |".format(self.state[0],self.state[1],self.state[2],self.state[3]))
         print("|-------------------|")
-        print("| {} | {} | {} | {} |".format(self.state[4],self.state[5],self.state[6]), self.state[7])
+        print("| {} | {} | {} | {} |".format(self.state[4],self.state[5],self.state[6], self.state[7]))
         print("|-------------------|")
         print("| {} | {} | {} | {} |".format(self.state[8],self.state[9],self.state[10], self.state[11]))
         print("|-------------------|")
@@ -88,7 +83,7 @@ def fifteenPuzzle_goal_state(state):
     '''Returns true if we have reached a goal state'''
     '''Input: an fifteenPuzzle state'''
     '''Output: True (if goal) or False (if not)'''
-    return(FifteenPuzzleState.goal_state == state.state)
+    return(state.goal_state == state.state)
 
 '''A set of problems for the 15-puzzle'''
 FIFTEEN_PROBLEMS = (
