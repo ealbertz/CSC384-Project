@@ -90,7 +90,12 @@ def fifteenPuzzle_goal_state(state):
     '''Output: True (if goal) or False (if not)'''
     return(FifteenPuzzleState.goal_state == state.state)
 
-
-
-
-
+'''A set of problems for the 15-puzzle'''
+FIFTEEN_PROBLEMS = (
+    FifteenPuzzleState("START",0,[2,9,3,4,12,0,10,5,15,1,14,8,6,13,11,7]),
+    FifteenPuzzleState("START",0,[12,3,7,14,5,9,10,2,1,15,11,4,13,0,6,8]),
+    FifteenPuzzleState("START",0,[1,10,2,15,12,0,3,4,9,6,8,7,5,14,13,11]),
+    FifteenPuzzleState("START",0,[9,3,7,4,5,15,13,10,2,6,1,12,8,0,14,11]),
+    FifteenPuzzleState("START",0,[6,5,2,4,1,0,8,10,14,15,12,3,9,13,7,11]),
+    FifteenPuzzleState("START",0,[5,6,4,11,10,0,9,7,13,3,2,1,14,15,8,12]),
+    )
