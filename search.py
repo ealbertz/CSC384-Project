@@ -111,6 +111,7 @@ _BEST_FIRST = 2
 _ASTAR = 3
 _UCS = 4
 _CUSTOM = 5
+_IDASTAR = 6
 
 #For best first and astar we use a priority queue. This requires
 #a comparison function for nodes. These constants indicate if we use
@@ -255,6 +256,7 @@ class SearchEngine:
         self.cost_bound_pruned = 0 
         self.total_search_time = 0       
         self.total_search_time = os.times()[0]
+        self.smallestNotExplored=100000000 #initial value for IDA* search
 
     def trace_on(self, level = 1):
         '''For debugging, set tracking level 1 or 2'''
@@ -305,7 +307,7 @@ class SearchEngine:
 
         return rval
 
-    def search(self, initState, goal_fn, heur_fn = _zero_hfn, timebound = 10, fval_function = _fval_function, weight = 0, costbound = 10000000000):
+    def search(self, initState, goal_fn, heur_fn = _zero_hfn, timebound = 10, fval_function = _fval_function, weight = 0, costbound = 10000000000, bound=10000000000):
         #Perform full cycle checking as follows
         #a. check state before inserting into OPEN. If we had already reached
         #   the same state via a cheaper path, don't insert into OPEN.
@@ -340,7 +342,7 @@ class SearchEngine:
         OPEN.insert(node)
 
         ###NOW do the search and return the result
-        goal_node = self.searchOpen(OPEN, goal_fn, heur_fn, timebound, fval_function, weight, costbound)
+        goal_node = self.searchOpen(OPEN, goal_fn, heur_fn, timebound, fval_function, weight, costbound, bound)
 
         if goal_node:
             self.total_search_time = os.times()[0] - self.total_search_time
@@ -354,7 +356,7 @@ class SearchEngine:
             print("Nodes expanded = {}, states generated = {}, states cycle check pruned = {}, states cost bound pruned = {}".format(sNode.n, StateSpace.n, self.cycle_check_pruned, self.cost_bound_pruned))
             return False
 
-    def searchOpen(self, OPEN, goal_fn, heur_fn, timebound, fval_function, weight, costbound):
+    def searchOpen(self, OPEN, goal_fn, heur_fn, timebound, fval_function, weight, costbound, bound):
         '''Open has some nodes on it, now search from that state of OPEN'''
 
         #BEGIN TRACING
@@ -403,6 +405,7 @@ class SearchEngine:
             #BEGIN TRACING
             if self.trace:
                 print("   TRACE: Expanding Node. Successors = {", end="")
+
                 for ss in successors:                  
                     print("<S{}:{}:{}, g={}, h={}, f=g+h={}>, ".format(ss.index, ss.action, ss.hashable_state(), ss.gval, heur_fn(ss), ss.gval+heur_fn(ss)), end="")                    
                 print("}")
@@ -449,7 +452,15 @@ class SearchEngine:
                     if self.trace > 1:
                       print(" TRACE: Successor State pruned, over current cost bound of {}", costbound)
                       print("\n") 
-                    continue                    
+                    continue  
+
+                if(succ.gval + heur_fn(succ) > bound):
+                    self.smallestNotExplored = min(succ.gval+heur_fn(succ), self.smallestNotExplored)
+                    if self.trace > 1:
+                      print(" TRACE: Smallest not explored {} curBound {}", smallestNotExplored, bound)
+                      print("\n") 
+                    continue
+
 
                 #passed all cycle checks and costbound checks ...add to open
                 OPEN.insert(sNode(succ, heur_fn(succ), node.fval_function, node.weight))
