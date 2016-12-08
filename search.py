@@ -450,14 +450,14 @@ class SearchEngine:
                 if (succ.gval > costbound) : 
                     self.cost_bound_pruned = self.cost_bound_pruned + 1
                     if self.trace > 1:
-                      print(" TRACE: Successor State pruned, over current cost bound of {}", costbound)
+                      print(" TRACE: Successor State pruned, over current cost bound of {}".format(costbound))
                       print("\n") 
                     continue  
 
                 if(succ.gval + heur_fn(succ) > bound):
                     self.smallestNotExplored = min(succ.gval+heur_fn(succ), self.smallestNotExplored)
                     if self.trace > 1:
-                      print(" TRACE: Smallest not explored {} curBound {}", smallestNotExplored, bound)
+                      print(" TRACE: Smallest not explored {} curBound {}".format(self.smallestNotExplored, bound))
                       print("\n") 
                     continue
 
