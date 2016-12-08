@@ -45,8 +45,10 @@ def heur_linear_conflict(state):
 
   for tj in range (1,n):
     for tk in range (tj+1,n):
-      if (linear_conflict(state.state.index(tj), state.state.index(tk), state.goal_state.index(tj), state.goal_state.index(tk), sqrt(n)) or linear_conflict(state.state.index(tk), state.state.index(tj), state.goal_state.index(tk), state.goal_state.index(tj), sqrt(n))):
-        count += 2
+      if (linear_conflict(state.state.index(tj), state.state.index(tk), state.goal_state.index(tj), state.goal_state.index(tk), sqrt(n))):
+        count += 1
+      if (linear_conflict(state.state.index(tk), state.state.index(tj), state.goal_state.index(tk), state.goal_state.index(tj), sqrt(n))):
+        count += 1
 
   return count
 
