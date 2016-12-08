@@ -93,4 +93,13 @@ FIFTEEN_PROBLEMS = (
     FifteenPuzzleState("START",0,[9,3,7,4,5,15,13,10,2,6,1,12,8,0,14,11]),
     FifteenPuzzleState("START",0,[6,5,2,4,1,0,8,10,14,15,12,3,9,13,7,11]),
     FifteenPuzzleState("START",0,[5,6,4,11,10,0,9,7,13,3,2,1,14,15,8,12]),
+    FifteenPuzzleState("START",0,[1,7,2,4,11,0,3,13,10,5,12,15,9,14,8,6]),
+    FifteenPuzzleState("START",0,[10,1,8,3,13,0,4,11,14,6,9,7,15,2,5,12]),
+    FifteenPuzzleState("START",0,[3,2,6,4,9,1,10,8,15,7,14,11,13,5,12,0]),
+    FifteenPuzzleState("START",0,[1,6,11,15,5,13,4,0,7,8,3,10,9,14,2,12]),
+    FifteenPuzzleState("START",0,[15,9,1,6,4,2,3,0,7,5,8,11,10,13,14,12]),
+    FifteenPuzzleState("START",0,[2,5,6,10,8,1,4,0,3,14,13,15,9,12,7,11]),
+    FifteenPuzzleState("START",0,[5,9,11,7,4,0,3,6,2,1,8,12,13,10,14,15]),
+    FifteenPuzzleState("START",0,[5,1,3,14,7,12,8,2,11,4,6,15,9,0,13,10]),
+    FifteenPuzzleState("START",0,[1,5,3,10,12,0,4,13,6,15,11,7,14,2,9,8]),
     )
