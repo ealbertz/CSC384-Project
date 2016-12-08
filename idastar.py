@@ -23,7 +23,7 @@ def iterative_deepening_astar(initial_state, goal_fn, heur_fn, timebound):
 		total_time += se.total_search_time
 		if(solution == False):
 			if (total_time >= timebound):
-				return False
+				return False, total_time
 			smallestNotExplored=se.smallestNotExplored
 			print(se.smallestNotExplored)
 			curBound=smallestNotExplored
