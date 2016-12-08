@@ -36,7 +36,7 @@ def heur_out_of_row_and_column(state):
       count += 1
   return count
 
-def heur_linear_conflict(state):
+def heur_linear_conflict_old(state):
   '''A heuristic function which returns the number of tiles that are in linear conflict.'''
 
   n = len(state.state) #The number of tiles in the puzzle
@@ -50,6 +50,28 @@ def heur_linear_conflict(state):
       if (linear_conflict(state.state.index(tk), state.state.index(tj), state.goal_state.index(tk), state.goal_state.index(tj), sqrt(n))):
         count += 1
 
+  return count
+
+def heur_linear_conflict(state):
+
+  n = len(state.state)
+
+  size = int(sqrt(n))
+
+  count = 0
+
+  numbers = list(range(1,n))
+
+  for i in numbers:
+    if (state.state.index(i) % size != state.goal_state.index(i) % size and state.state.index(i) // size != state.goal_state.index(i) // size):
+      numbers.remove(i)
+      continue
+    for j in numbers:
+      if i == j:
+        continue
+      if (linear_conflict(state.state.index(i), state.state.index(j), state.goal_state.index(i), state.goal_state.index(j), size) or linear_conflict(state.state.index(j),state.state.index(i),state.goal_state.index(j),state.goal_state.index(i), size)):
+        count += 2
+    numbers.remove(i)
   return count
 
 def heur_manhattan_linear(state):
